@@ -65,6 +65,12 @@ def evaluate_grades(data):
         sys.exit(1)
 
     # TODO: c) Calculate the Final Grade and GPA
+    total_grade=0
+    for item in data:
+        total_grade=total_grade+ item['score']* item['weight']/100
+    gpa=(total_grade/100)*5.0
+    print("Total grade:", total_grade)
+    print("GPA", gpa)
     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
     # TODO: e) Check for failed formative assignments (< 50%)
     #          and determine which one(s) have the highest weight for resubmission.
