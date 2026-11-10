@@ -37,6 +37,10 @@ def evaluate_grades(data):
     'data' is a list of dictionaries containing the assignment records.
     """
     print("\n--- Processing Grades ---")
+    if len(data)==0:
+        print("Error: The file has no assignment records. Add grades and try again.")
+        sys.exit(1)
+
     
     # TODO: a) Check if all scores are percentage based (0-100)
     for item in data:
