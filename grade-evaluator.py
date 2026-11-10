@@ -54,9 +54,16 @@ def evaluate_grades(data):
             formative_weight = formative_weight + item['weight']
         elif item['group'] == 'Summative':
             summative_weight = summative_weight + item['weight']
-    print("Total weight:", total_weight)
-    print("Formative weight:", formative_weight)
-    print("Summative weight:", summative_weight)
+    if total_weight != 100:
+        print(f"Error: Total weight is {total_weight}, but it must be 100.")
+        sys.exit(1)
+    if formative_weight !=60:
+        print(f"Error: Formative weight is {formative_weight}, but it must be 60.")
+        sys.exit(1)
+    if summative_weight !=40:
+        print(f"Error: Summative weight is {summative_weight}, but it must be 40.")
+        sys.exit(1)
+
     # TODO: c) Calculate the Final Grade and GPA
     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
     # TODO: e) Check for failed formative assignments (< 50%)
