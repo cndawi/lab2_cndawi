@@ -40,7 +40,6 @@ def evaluate_grades(data):
     
     # TODO: a) Check if all scores are percentage based (0-100)
     for item in data:
-        print(item['assignment'], item['score'])
         if item['score'] <0 or item['score'] >100:
             print(f"Error: Invalid score {item['score']} for '{item['assignment']}'. Scores must be between 0 and 100.")
             sys.exit(1)
@@ -69,8 +68,6 @@ def evaluate_grades(data):
     for item in data:
         total_grade=total_grade+ item['score']* item['weight']/100
     gpa=(total_grade/100)*5.0
-    print("Total grade:", total_grade)
-    print("GPA", gpa)
     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
     formative_points=0
     summative_points=0
@@ -83,12 +80,9 @@ def evaluate_grades(data):
     formative_percent=formative_points/formative_weight*100
     summative_percent=summative_points/summative_weight*100
     if formative_percent>=50 and summative_percent>=50:
-        status="Passed"
+        status="PASSED"
     else:
-        status="Failed"
-    print("Formative %:", formative_percent)
-    print("Summative %:", summative_percent)
-    print("Status:", status)
+        status="FAILED"
     
     # TODO: e) Check for failed formative assignments (< 50%)
     #          and determine which one(s) have the highest weight for resubmission.
@@ -105,8 +99,17 @@ def evaluate_grades(data):
         for item in failed_formative:
             if item['weight']==highest_weight:
                 resubmit.append(item)
-    for item in resubmit:
-        print("Resubmit:", item['assignment'])
+    print ("Total grade:", round(total_grade,2), "/100")
+    print("GPA:", round(gpa,2), "/5.0")
+    print("Formative:", round(formative_percent,2), "%")
+    print("Summative:", round(summative_percent,2), "%")
+    print("\nFinal Status:", status)
+    if len(resubmit) >0:
+        print("\nEligible for resubmission:")
+        for item in resubmit:
+            print("-", item['assignment'])
+    else:
+        print("\nNo resubmission needed.")
 
     # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
     
