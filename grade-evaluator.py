@@ -23,7 +23,7 @@ def load_csv_data():
                 try:
                     score=float(row['score'])
                     weight=float(row['weight'])
-                except ValueError:
+                except (ValueError, TypeError):
                     print(f"Error: Invalid number for '{row['assignment']}'. Score and weight must be numbers (score: '{row['score']}', weight: '{row['weight']}').")
                     sys.exit(1)
 
