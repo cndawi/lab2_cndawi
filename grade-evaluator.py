@@ -20,6 +20,13 @@ def load_csv_data():
             reader = csv.DictReader(file)
             for row in reader:
                 # Convert numeric fields to floats for calculations
+                try:
+                    score=float(row['score'])
+                    weight=float(row['weight'])
+                except ValueError:
+                    print(f"Error: Invalid number for '{row['assignment']}'. Score and weight must be numbers (score: '{row['score']}', weight: '{row['weight']}').")
+                    sys.exit(1)
+
                 assignments.append({
                     'assignment': row['assignment'],
                     'group': row['group'],
