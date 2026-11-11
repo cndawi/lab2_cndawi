@@ -30,8 +30,8 @@ def load_csv_data():
                 assignments.append({
                     'assignment': row['assignment'],
                     'group': row['group'],
-                    'score': float(row['score']),
-                    'weight': float(row['weight'])
+                    'score': score,
+                    'weight': weight
                 })
         return assignments
     except Exception as e:
